@@ -212,7 +212,9 @@ let getTranspuesta = (m1) => {
 
 
 
-function getInversa(m){
+function getInversa(ma){
+
+    let m=JSON.parse(JSON.stringify(ma));
 
     if(m.length!=m[0].length){
         return []
@@ -283,21 +285,14 @@ return m;
 //verificando que funcione lo de inversa
 
 let m1=[[1,3,3], [1,4,3], [1,3,4]];
+let m4=[[8,8,3],[3,7,4], [8,2,6]];
 let m2 = getInversa(m1)
 
 let log=console.log
 
-log(m1);log(m2);
+let m5=getInversa(m4)
 
-let mul = multiplyMatriz(m1,m2)
 
-log(mul)
+let m6 = multiplyMatriz(m4,m5)
+log(m6)
 
-let m3=[[1,4,7], [2,5,8], [3,6,9]]
-let m4=[[1,-1,2], [2,-1,2], [3,-3,0]]
-
-log(multiplyMatriz(m3,m4))
-
-let m6=[[1,2], [-1,0], [-3,-1]]
-let m7=[[2,0,1], [-5,2,3]]
-log(multiplyMatriz(m6,m7))
