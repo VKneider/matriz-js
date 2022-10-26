@@ -76,15 +76,30 @@ for (let i=0; i<m1.length;i++){
 
 }
 
+let sameSize = (m1,m2) => {
+
+
+    let flag=true;
+
+    if(m1.length!=m2.length){return false;}
+
+    for(let i=0;i<m1.length;i++){
+
+        if(m1[i].length!=m2[i].length){flag=false}
+    }
+
+    return flag;
+
+}
+
 
 let sumaMatriz= (m1,m2)  => {
 
-    let m1Flag=verifySquare(m1)
-    let m2Flag=verifySquare(m2)
-   
+    let m1Rows= m1.length; 
+    let m1Col=m1[0].length;
     let rows=[]
 
-    if(m1Flag && m2Flag){
+    if(sameSize(m1,m2)){
 
         let result=[]; 
 
@@ -156,13 +171,13 @@ let multiplyMatriz = (m1,m2) => {
 
 let restaMatriz= (m1,m2)  => {
 
-    let m1Flag=verifySquare(m1)
-    let m2Flag=verifySquare(m2)
-
+    
+    let m1Rows= m1.length; 
+    let m1Col=m1[0].length;
 
     let rows=[]
 
-    if(m1Flag && m2Flag){
+    if(sameSize(m1,m2)){
 
         let result=[]; 
 
@@ -191,7 +206,8 @@ let restaMatriz= (m1,m2)  => {
 
 let multiplyScalar = (m1, scalar) => {
 
-    if(!m1 || !scalar){return []}
+    if(!Number(scalar)){return []}
+
     let aux = [... m1]
     
     for(let i=0;i<m1.length; i++ ){
@@ -230,11 +246,11 @@ let getTranspuesta = (m1) => {
 
 function getInversa(ma){
 
+
     let m=JSON.parse(JSON.stringify(ma));
 
-    if(m.length!=m[0].length){
-        return []
-    } else {
+    if(!verifySquare(ma)){return []} 
+    else {
 
         let filas = m.length;
     let inv = matriz(filas, filas, 1)
@@ -303,7 +319,9 @@ return m;
 let m1=[[1,3,3], [1,4,3], [1,3,4]];
 let m4=[[8,8,3],[3,7,4], [8,2,6], [1]];
 
+let a=matriz(3,3,1)
 
+let b=matriz(3,3,1)
 let log=console.log
 
-log (multiplyMatriz(m1,getInversa(m1)))
+log (restaMatriz(a,b))
