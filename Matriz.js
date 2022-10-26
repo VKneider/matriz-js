@@ -3,11 +3,12 @@ let matriz = (n,m,type) => {
 let rows= [];
 let matriz = []
 
+if(parseInt(n)==NaN || parseInt(m)==NaN){ return []}
+
 switch (type){
 
 default:
 case 0:
-
 
 for(let i=0; i<n;i++){
 
@@ -49,24 +50,41 @@ for(let i=0; i<n;i++){
 return matriz;
 break;
 
-}
+
+
+
 
 }
 
+}
 
+
+let verifySquare = m1 => {
+
+
+let last = m1[0].length;
+let flag = true;
+
+for (let i=0; i<m1.length;i++){
+
+    if(last!=m1[i].length || m1.length!=last){flag=false;break;}
+
+    last=m1[i].length;
+}
+
+    return flag;
+
+}
 
 
 let sumaMatriz= (m1,m2)  => {
 
-    let m1Rows = m1.length;
-    let m1Col = m1[0].length;
-
-
-    let m2Rows = m2.length;
-    let m2Col = m2[0].length;
+    let m1Flag=verifySquare(m1)
+    let m2Flag=verifySquare(m2)
+   
     let rows=[]
 
-    if(m1Rows==m2Rows && m1Col==m2Col){
+    if(m1Flag && m2Flag){
 
         let result=[]; 
 
@@ -138,15 +156,13 @@ let multiplyMatriz = (m1,m2) => {
 
 let restaMatriz= (m1,m2)  => {
 
-    let m1Rows = m1.length;
-    let m1Col = m1[0].length;
+    let m1Flag=verifySquare(m1)
+    let m2Flag=verifySquare(m2)
 
 
-    let m2Rows = m2.length;
-    let m2Col = m2[0].length;
     let rows=[]
 
-    if(m1Rows==m2Rows && m1Col==m2Col){
+    if(m1Flag && m2Flag){
 
         let result=[]; 
 
@@ -282,17 +298,12 @@ return m;
 
 
 
-//verificando que funcione lo de inversa
+
 
 let m1=[[1,3,3], [1,4,3], [1,3,4]];
-let m4=[[8,8,3],[3,7,4], [8,2,6]];
-let m2 = getInversa(m1)
+let m4=[[8,8,3],[3,7,4], [8,2,6], [1]];
+
 
 let log=console.log
 
-let m5=getInversa(m4)
-
-
-let m6 = multiplyMatriz(m4,m5)
-log(m6)
-
+log (multiplyMatriz(m1,getInversa(m1)))
